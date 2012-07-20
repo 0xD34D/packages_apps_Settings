@@ -58,10 +58,5 @@
             android:title="@string/notification_pulse_title"
             android:persistent="false" />
 
-        <CheckBoxPreference
-            android:key="ui_mode"
-            android:title="@string/ui_mode_title"/>
-
-
 
 </PreferenceScreen>

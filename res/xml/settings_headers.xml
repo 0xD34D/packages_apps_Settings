@@ -74,6 +74,13 @@
         android:fragment="com.android.settings.DisplaySettings"
         android:title="@string/display_settings" />
 
+    <!-- UI -->
+    <header
+        android:id="@+id/ui_settings"
+        android:icon="@drawable/ic_settings_applications"
+        android:fragment="com.android.settings.UiSettings"
+        android:title="@string/ui_settings" />
+
     <!-- Storage -->
     <header
         android:id="@+id/storage_settings"

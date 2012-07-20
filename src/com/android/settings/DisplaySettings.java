@@ -51,12 +51,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
-	private static final String KEY_UI_MODE = "ui_mode";
 
     private CheckBoxPreference mAccelerometer;
     private ListPreference mFontSizePref;
     private CheckBoxPreference mNotificationPulse;
-	private CheckBoxPreference mUiMode;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -85,12 +83,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             // Display settings.  However, is still available in Accessibility settings.
             getPreferenceScreen().removePreference(mAccelerometer);
         }
-
-       	mUiMode = (CheckBoxPreference) findPreference(KEY_UI_MODE);
-        mUiMode.setPersistent(false);
-		mUiMode.setChecked(Settings.System.getInt(getContentResolver(),
-								Settings.System.UI_MODE, 0) == 1);
-		mUiMode.setOnPreferenceChangeListener(this);
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
         if (mScreenSaverPreference != null
@@ -289,13 +281,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
         }
-		if (KEY_UI_MODE.equals(key)) {
-			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));
-			Settings.System.putInt(getContentResolver(), Settings.System.UI_MODE,
-					value ? 1 : 0);
-			Log.d(TAG, "UI mode = " + value);
-		}
-
         return true;
     }
 }

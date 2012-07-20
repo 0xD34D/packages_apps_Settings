@@ -1707,8 +1707,15 @@
     <string name="summary_font_size" translatable="false">%1$s</string>
     <!-- [CHAR LIMIT=40] Sound & display settings screen, title of dialog for picking font size -->
     <string name="dialog_title_font_size">Font size</string>
-    <!-- Sound & display settings screen, force phone UI check box label -->
+
+    <!-- UI settings -->
+    <!-- UI settings screen, section header for settings related to UI -->
+    <string name="ui_settings">UI</string>
+    <!-- UI settings screen, force phone UI check box label -->
     <string name="ui_mode_title">Force phone UI</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="sliding_navbar_title">Collapsible navbar</string>
+
 
     <!-- SIM lock settings title -->
     <string name="sim_lock_settings">SIM card lock settings</string>
