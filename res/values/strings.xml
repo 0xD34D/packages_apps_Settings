@@ -1715,6 +1715,10 @@
     <string name="ui_mode_title">Force phone UI</string>
     <!-- UI settings screen, use sliding navbar check box label -->
     <string name="sliding_navbar_title">Collapsible navbar</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="sliding_navbar_autohide_title">Auto-hide collapsible navbar</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="autohide_time_title">Auto-hide timer</string>
 
 
     <!-- SIM lock settings title -->

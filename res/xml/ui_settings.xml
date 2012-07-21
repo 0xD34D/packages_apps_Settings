@@ -26,5 +26,14 @@
             android:key="sliding_navbar"
             android:title="@string/sliding_navbar_title"/>
 
+        <CheckBoxPreference
+            android:key="sliding_navbar_autohide"
+            android:title="@string/sliding_navbar_autohide_title"/>
+
+        <ListPreference
+            android:key="autohide_time"
+            android:title="@string/autohide_time_title"
+            android:entries="@array/autohide_entries"
+            android:entryValues="@array/autohide_values" />
 
 </PreferenceScreen>

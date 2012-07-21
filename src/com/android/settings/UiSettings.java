@@ -25,6 +25,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
@@ -39,9 +40,13 @@ public class UiSettings extends SettingsPreferenceFragment implements
 
 	private static final String KEY_UI_MODE = "ui_mode";
 	private static final String KEY_SLIDING_NAVBAR = "sliding_navbar";
+    private static final String KEY_AUTOHIDE_NAVBAR = "sliding_navbar_autohide";
+    private static final String KEY_AUTOHIDE_TIMER = "autohide_time";
 
     private CheckBoxPreference mSlidingNavbar;
 	private CheckBoxPreference mUiMode;
+	private CheckBoxPreference mAutoHide;
+	private ListPreference mAutoHideTime;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -63,6 +68,22 @@ public class UiSettings extends SettingsPreferenceFragment implements
 		mSlidingNavbar.setChecked(Settings.System.getInt(getContentResolver(),
 								Settings.System.NAVIGATION_BAR_USE_SLIDER, 0) == 1);
 		mSlidingNavbar.setOnPreferenceChangeListener(this);
+
+       	mAutoHide = (CheckBoxPreference) findPreference(KEY_AUTOHIDE_NAVBAR);
+        mAutoHide.setPersistent(false);
+		mAutoHide.setChecked(Settings.System.getInt(getContentResolver(),
+								Settings.System.NAVIGATION_BAR_AUTOHIDE_SLIDER, 0) == 1);
+		mAutoHide.setOnPreferenceChangeListener(this);
+
+        mAutoHideTime = (ListPreference) findPreference(KEY_AUTOHIDE_TIMER);
+        mAutoHideTime.setOnPreferenceChangeListener(this);
+        if (mSlidingNavbar.isChecked() == false) {
+            mAutoHide.setEnabled(false);
+            mAutoHideTime.setEnabled(false);
+        } else {
+            if (mAutoHide.isChecked() == false)
+                mAutoHideTime.setEnabled(false);
+        }
     }
 
     @Override
@@ -90,8 +111,24 @@ public class UiSettings extends SettingsPreferenceFragment implements
 			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));
 			Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_USE_SLIDER,
 					value ? 1 : 0);
+            mAutoHide.setEnabled(value);
+            if (mAutoHide.isChecked())
+                mAutoHideTime.setEnabled(value);
 			Log.d(TAG, "sliding navbar = " + value);
 		}
+
+        if (KEY_AUTOHIDE_NAVBAR.equals(key)) {
+			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));
+			Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_AUTOHIDE_SLIDER,
+					value ? 1 : 0);
+            mAutoHideTime.setEnabled(value);
+        }
+
+        if (KEY_AUTOHIDE_TIMER.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+			Settings.System.putInt(getContentResolver(), 
+                Settings.System.NAVIGATION_BAR_AUTOHIDE_TIME, value);
+        }
 
         return true;
     }
