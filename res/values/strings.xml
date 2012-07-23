@@ -1719,6 +1719,8 @@
     <string name="sliding_navbar_autohide_title">Auto-hide collapsible navbar</string>
     <!-- UI settings screen, use sliding navbar check box label -->
     <string name="autohide_time_title">Auto-hide timer</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="status_bar_type_title">Status bar UI type</string>
 
 
     <!-- SIM lock settings title -->

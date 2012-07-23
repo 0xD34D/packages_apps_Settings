@@ -746,4 +746,19 @@
         <item>60</item>
     </string-array>
 
+    <!-- Default tablet statusbar auto-hide choices -->
+    <string-array name="navbar_type_entries">
+        <item>Normal tablet statusbar</item>
+        <item>Collapsible tablet statusbar</item>
+        <item>Quicknav tablet statusbar</item>
+        <item>Phone statusbar + navbar</item>
+    </string-array>
+    <!-- Do not translate. -->
+    <string-array name="navbar_type_values">
+        <item>system_bar_normal</item>
+        <item>system_bar_slider</item>
+        <item>system_bar_quicknav</item>
+        <item>phone_statusbar</item>
+    </string-array>
+
 </resources>

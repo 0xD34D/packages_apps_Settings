@@ -38,13 +38,16 @@ public class UiSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "UiSettings";
 
-	private static final String KEY_UI_MODE = "ui_mode";
-	private static final String KEY_SLIDING_NAVBAR = "sliding_navbar";
+    private static final String KEY_STATUSBAR_TYPE = "status_bar_type";
     private static final String KEY_AUTOHIDE_NAVBAR = "sliding_navbar_autohide";
     private static final String KEY_AUTOHIDE_TIMER = "autohide_time";
 
-    private CheckBoxPreference mSlidingNavbar;
-	private CheckBoxPreference mUiMode;
+    private static final String TYPE_SYSTEM_BAR_NORMAL = "system_bar_normal";
+    private static final String TYPE_SYSTEM_BAR_SLIDER = "system_bar_slider";
+    private static final String TYPE_SYSTEM_BAR_QUICKNAV = "system_bar_quicknav";
+    private static final String TYPE_SYSTEM_BAR_PHONE = "phone_statusbar";
+
+	private ListPreference mStatusbarType;
 	private CheckBoxPreference mAutoHide;
 	private ListPreference mAutoHideTime;
 
@@ -57,17 +60,11 @@ public class UiSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.ui_settings);
 
-       	mUiMode = (CheckBoxPreference) findPreference(KEY_UI_MODE);
-        mUiMode.setPersistent(false);
-		mUiMode.setChecked(Settings.System.getInt(getContentResolver(),
-								Settings.System.UI_MODE, 0) == 1);
-		mUiMode.setOnPreferenceChangeListener(this);
-
-       	mSlidingNavbar = (CheckBoxPreference) findPreference(KEY_SLIDING_NAVBAR);
-        mSlidingNavbar.setPersistent(false);
-		mSlidingNavbar.setChecked(Settings.System.getInt(getContentResolver(),
-								Settings.System.NAVIGATION_BAR_USE_SLIDER, 0) == 1);
-		mSlidingNavbar.setOnPreferenceChangeListener(this);
+        mStatusbarType = (ListPreference) findPreference(KEY_STATUSBAR_TYPE);
+        mStatusbarType.setOnPreferenceChangeListener(this);
+        String type = mStatusbarType.getValue();
+        if (type == null || type.equals(""))
+            type = TYPE_SYSTEM_BAR_NORMAL;
 
        	mAutoHide = (CheckBoxPreference) findPreference(KEY_AUTOHIDE_NAVBAR);
         mAutoHide.setPersistent(false);
@@ -77,12 +74,10 @@ public class UiSettings extends SettingsPreferenceFragment implements
 
         mAutoHideTime = (ListPreference) findPreference(KEY_AUTOHIDE_TIMER);
         mAutoHideTime.setOnPreferenceChangeListener(this);
-        if (mSlidingNavbar.isChecked() == false) {
-            mAutoHide.setEnabled(false);
-            mAutoHideTime.setEnabled(false);
-        } else {
-            if (mAutoHide.isChecked() == false)
-                mAutoHideTime.setEnabled(false);
+
+        if (!TYPE_SYSTEM_BAR_SLIDER.equals(type)) {
+            getPreferenceScreen().removePreference(mAutoHide);
+            getPreferenceScreen().removePreference(mAutoHideTime);
         }
     }
 
@@ -100,21 +95,18 @@ public class UiSettings extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
-		if (KEY_UI_MODE.equals(key)) {
-			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));
-			Settings.System.putInt(getContentResolver(), Settings.System.UI_MODE,
-					value ? 1 : 0);
-			Log.d(TAG, "UI mode = " + value);
-		}
-
-		if (KEY_SLIDING_NAVBAR.equals(key)) {
-			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));
-			Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_USE_SLIDER,
-					value ? 1 : 0);
-            mAutoHide.setEnabled(value);
-            if (mAutoHide.isChecked())
-                mAutoHideTime.setEnabled(value);
-			Log.d(TAG, "sliding navbar = " + value);
+		if (KEY_STATUSBAR_TYPE.equals(key)) {
+			String value = ((String) objValue);
+			Settings.System.putString(getContentResolver(), Settings.System.NAVIGATION_BAR_TYPE,
+					value);
+			Log.d(TAG, "Statusbar type = " + value);
+            if (!TYPE_SYSTEM_BAR_SLIDER.equals(value)) {
+                getPreferenceScreen().removePreference(mAutoHide);
+                getPreferenceScreen().removePreference(mAutoHideTime);
+            } else {
+                getPreferenceScreen().addPreference(mAutoHide);
+                getPreferenceScreen().addPreference(mAutoHideTime);
+            }
 		}
 
         if (KEY_AUTOHIDE_NAVBAR.equals(key)) {
