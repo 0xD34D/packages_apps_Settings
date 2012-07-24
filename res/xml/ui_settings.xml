@@ -25,6 +25,15 @@
             android:entryValues="@array/navbar_type_values" />
 
         <CheckBoxPreference
+            android:key="quicknav_navbar_hide_on_press"
+            android:title="@string/quicknav_navbar_press_hide_title"
+            android:summary="@string/quicknav_navbar_press_hide_summary" />
+
+        <CheckBoxPreference
+            android:key="quicknav_navbar_autohide"
+            android:title="@string/quicknav_navbar_autohide_title"/>
+
+        <CheckBoxPreference
             android:key="sliding_navbar_autohide"
             android:title="@string/sliding_navbar_autohide_title"/>
 

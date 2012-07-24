@@ -1718,6 +1718,12 @@
     <!-- UI settings screen, use sliding navbar check box label -->
     <string name="sliding_navbar_autohide_title">Auto-hide collapsible navbar</string>
     <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="quicknav_navbar_autohide_title">Auto-hide Quicknav panel</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="quicknav_navbar_press_hide_title">Hide Quicknav on button press</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="quicknav_navbar_press_hide_summary">Hides the Quicknav panel automatically once a button is pressed</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
     <string name="autohide_time_title">Auto-hide timer</string>
     <!-- UI settings screen, use sliding navbar check box label -->
     <string name="status_bar_type_title">Status bar UI type</string>
