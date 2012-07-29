@@ -1727,6 +1727,10 @@
     <string name="autohide_time_title">Auto-hide timer</string>
     <!-- UI settings screen, use sliding navbar check box label -->
     <string name="status_bar_type_title">Status bar UI type</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="show_battery_bar_title">Battery bar</string>
+    <!-- UI settings screen, use sliding navbar check box label -->
+    <string name="show_battery_bar_summary">Display a bar in the status bar, indicating battery level</string>
 
 
     <!-- SIM lock settings title -->

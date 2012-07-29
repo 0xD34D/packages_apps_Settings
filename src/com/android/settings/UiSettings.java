@@ -43,6 +43,7 @@ public class UiSettings extends SettingsPreferenceFragment implements
     private static final String KEY_QUICKNAV_PRESS_HIDE = "quicknav_navbar_hide_on_press";
     private static final String KEY_AUTOHIDE_NAVBAR = "sliding_navbar_autohide";
     private static final String KEY_AUTOHIDE_TIMER = "autohide_time";
+    private static final String KEY_SHOW_BATTERY_BAR = "show_battery_bar";
 
     private static final String TYPE_SYSTEM_BAR_NORMAL = "system_bar_normal";
     private static final String TYPE_SYSTEM_BAR_SLIDER = "system_bar_slider";
@@ -55,6 +56,7 @@ public class UiSettings extends SettingsPreferenceFragment implements
 	private CheckBoxPreference mQuicknavAutoHide;
 	private CheckBoxPreference mQuicknavPressHide;
 	private ListPreference mAutoHideTime;
+	private CheckBoxPreference mBatteryBar;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -70,6 +72,12 @@ public class UiSettings extends SettingsPreferenceFragment implements
         String type = mStatusbarType.getValue();
         if (type == null || type.equals(""))
             type = TYPE_SYSTEM_BAR_NORMAL;
+
+       	mBatteryBar = (CheckBoxPreference) findPreference(KEY_SHOW_BATTERY_BAR);
+        mBatteryBar.setPersistent(false);
+		mBatteryBar.setChecked(Settings.System.getInt(getContentResolver(),
+								Settings.System.SHOW_BATTERY_BAR, 0) == 1);
+		mBatteryBar.setOnPreferenceChangeListener(this);
 
        	mAutoHide = (CheckBoxPreference) findPreference(KEY_AUTOHIDE_NAVBAR);
         mAutoHide.setPersistent(false);
@@ -141,6 +149,12 @@ public class UiSettings extends SettingsPreferenceFragment implements
                 getPreferenceScreen().removePreference(mAutoHideTime);
 
 		}
+
+        if (KEY_SHOW_BATTERY_BAR.equals(key)) {
+			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));
+			Settings.System.putInt(getContentResolver(), Settings.System.SHOW_BATTERY_BAR,
+					value ? 1 : 0);
+        }
 
         if (KEY_QUICKNAV_PRESS_HIDE.equals(key)) {
 			boolean value = ((Boolean) objValue.equals(Boolean.TRUE));

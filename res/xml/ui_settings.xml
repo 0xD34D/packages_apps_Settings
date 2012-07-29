@@ -43,4 +43,9 @@
             android:entries="@array/autohide_entries"
             android:entryValues="@array/autohide_values" />
 
+        <CheckBoxPreference
+            android:key="show_battery_bar"
+            android:title="@string/show_battery_bar_title"
+            android:summary="@string/show_battery_bar_summary" />
+
 </PreferenceScreen>
