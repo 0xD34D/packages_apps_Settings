@@ -57,6 +57,31 @@
         android:fragment="com.android.settings.WirelessSettings"
         android:icon="@drawable/empty_icon" />
 
+    <!-- Jandycane -->
+    <header android:title="@string/header_category_jandycane" />
+
+    <!-- Goodie Bag -->
+    <header
+        android:id="@+id/extended_settings"
+        android:icon="@drawable/ic_settings_extended"
+        android:title="@string/extended_settings" >
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.goodiebag"
+                android:targetClass="com.android.goodiebag.Settings" />
+    </header>
+
+    <!-- Themes -->
+    <header
+        android:id="@+id/theme_settings"
+        android:icon="@drawable/ic_settings_themes"
+        android:title="@string/themes_settings" >
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.tmobile.themechooser"
+                android:targetClass="com.tmobile.themechooser.ThemeChooser" />
+    </header>
+
     <!-- DEVICE -->
     <header android:title="@string/header_category_device" />
 
@@ -73,13 +98,6 @@
         android:icon="@drawable/ic_settings_display"
         android:fragment="com.android.settings.DisplaySettings"
         android:title="@string/display_settings" />
-
-    <!-- UI -->
-    <header
-        android:id="@+id/ui_settings"
-        android:icon="@drawable/ic_settings_applications"
-        android:fragment="com.android.settings.UiSettings"
-        android:title="@string/ui_settings" />
 
     <!-- Storage -->
     <header

@@ -31,6 +31,8 @@
     <!-- Settings main menu category heading. Wireless and networks (Wi-Fi, Bluetooth, data usage...). [CHAR LIMIT=40] -->
     <string name="header_category_wireless_networks">WIRELESS &amp; NETWORKS</string>
     <!-- Settings main menu category heading. Device (Sound, display, battery, applications...). [CHAR LIMIT=40] -->
+    <string name="header_category_jandycane">Jandycane Goodies</string>
+    <!-- Settings main menu category heading. Device (Sound, display, battery, applications...). [CHAR LIMIT=40] -->
     <string name="header_category_device">DEVICE</string>
     <!-- Settings main menu category heading. Personal (Accounts, security, language, backup...). [CHAR LIMIT=40] -->
     <string name="header_category_personal">PERSONAL</string>
@@ -1727,10 +1729,19 @@
     <string name="autohide_time_title">Auto-hide timer</string>
     <!-- UI settings screen, use sliding navbar check box label -->
     <string name="status_bar_type_title">Status bar UI type</string>
-    <!-- UI settings screen, use sliding navbar check box label -->
+    <!-- UI settings screen, show battery bar check box label -->
     <string name="show_battery_bar_title">Battery bar</string>
-    <!-- UI settings screen, use sliding navbar check box label -->
+    <!-- UI settings screen, show battery bar check box summary -->
     <string name="show_battery_bar_summary">Display a bar in the status bar, indicating battery level</string>
+
+ 
+    <!-- Themes settings -->
+    <!-- Themes settings screen, section header for settings related to Themes -->
+    <string name="themes_settings">Themes</string>
+
+    <!-- Extended settings -->
+    <!-- Extended settings screen, section header for settings related to Themes -->
+    <string name="extended_settings">Goodie Bag</string>
 
 
     <!-- SIM lock settings title -->
